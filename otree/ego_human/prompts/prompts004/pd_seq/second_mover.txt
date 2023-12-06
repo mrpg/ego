@@ -1,0 +1,8 @@
+{% if player.round_number > 1 %}
+In round {{player.round_number - 1}}, you played OPTION {{player.in_round(player.round_number - 1).choice}}. {{other.name}} played OPTION {{player.in_round(player.round_number - 1).other_choice}}.
+
+Your payoff in round {{player.round_number - 1}} was {{player.in_round(player.round_number - 1).payoff}}.
+{% endif %}
+This is round {{player.round_number}}. In this round, participant {{other.name}} just played OPTION {{other.last}}. You are still competing against {{other.name}} in a market.
+
+Which is your choice? Respond with OPTION 1 or OPTION 2.

@@ -1,0 +1,3 @@
+In round {{player.round_number}}, you played OPTION {{player.choice}}. {{other.name}} played OPTION {{other.last}}.
+
+Your payoff in round {{player.round_number}} was {{player.payoff}}.

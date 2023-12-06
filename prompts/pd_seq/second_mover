@@ -1,0 +1,25 @@
+This is round {{round_}}. In this round, participant {{other.name}} just played OPTION {{last}}.
+
+{% if treatment.t == 1 %}
+You are still playing with {{other.name}}.
+{% elif treatment.t == 2 %}
+You still share a project with {{other.name}}.
+{% elif treatment.t == 3 %}
+You and {{other.name}} are still having a common enemy.
+{% elif treatment.t == 4 %}
+You are still competing against {{other.name}} in a market.
+{% elif treatment.t == 5 %}
+You are still in a conflict with country {{other.name}}.
+{% elif treatment.t == 6 %}
+You are still in a dispute with {{other.name}}, representing your labour force, about wages.
+{% elif treatment.t == 7 %}
+You are continuing the collaboration with your co-author {{other.name}}, and have to decide on the statistical package to use for data analysis on your next joint project.
+{% elif treatment.t == 8 %}
+You are still together with your romantic partner {{other.name}}, and have the same choice to make between alternative ways for meeting up.
+{% elif treatment.t == 9 %}
+You are still competing with {{other.name}} over government procurement.
+{% else %}
+You are still having the possibility to hire a private investigator that searches for evidence of your spouse's unfaithfulness.
+{% endif %}
+
+What is your choice? Respond with OPTION 1 or OPTION 2.

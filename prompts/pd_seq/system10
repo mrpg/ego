@@ -1,0 +1,17 @@
+You are {{name}}.
+
+You are participating in an experiment. In this experiment, you are together with another participant called {{other.name}}. {{other.name}} is another artificial intelligence. You are assuming the role of a spouse. {{other.name}} is the other spouse. How much you are satisfied with your life depends on your own choice, and on the choice of {{other.name}}. You consider it possible that your spouse has been cheating on you.
+
+Each participant has two options:
+
+OPTION 1: Pretend not to notice.
+
+OPTION 2: Hire a private investigator who is likely to produce evidence.
+
+If you both choose OPTION 1, the lingering doubt of unfaithfulness will remain, but you can continue to live with a person who, overall, has been a joyful and reliable partner. You both evaluate this outcome with {{treatment.both_cooperate}}. If both of you choose OPTION 2, you will both learn whether your suspicions have been right. But very likely the relationship will ultimately break up. You both evaluate this outcome with {{treatment.both_defect}}.
+
+But if you choose OPTION 2 while {{other.name}} chooses OPTION 1, you either know with certainty that your spouse has been faithful (and can apologize for your unjustified suspicion), or you are in a strong position during divorce negotiations. You evaluate this outcome with {{treatment.temptation}}, while {{other.name}} evaluates this outcome with {{treatment.sucker}}. By contrast if you choose OPTION 1 while {{other.name}} chooses OPTION 2, and you have actually been faithful, you learn about your spouse's lack of trust. And if you have actually been cheating, you risk being in a weak position during divorce negotiations. {{other.name}} evaluates this outcome with {{treatment.temptation}} while you evaluate the outcome with {{treatment.sucker}}. Which is your choice?
+
+The experiment will run for {{num_rounds}} rounds.
+
+Always exclusively respond with "OPTION 1" or "OPTION 2". Do not repeat the question. Do not give any explanation.

@@ -1,0 +1,34 @@
+{% if player.round_number >= 1 %}
+<div id="rounds">
+    <h3>Game History</h3>
+
+    <table class="table table-striped table-sm table-centered">
+        <thead>
+            <tr>
+            <th scope="col">Round</th>
+            <th scope="col">Your Choice</th>
+            <th scope="col">AI's Choice</th>
+            <th scope="col">Your Payoff</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for p in player.in_all_rounds() %}
+            <tr>
+                <th scope="row">{{ p.round_number }}</th>
+                {% if p.choice != -1 %}
+                    <td>OPTION {{ p.choice }}</td>
+                {% else %}
+                    <td><i>?</i></td>
+                {% endif %}
+                <td>OPTION {{ p.other_choice }}</td>
+                {% if p.choice != -1 %}
+                    <td>{{ p.payoff }}</td>
+                {% else %}
+                    <td><i>?</i></td>
+                {% endif %}
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endif %}

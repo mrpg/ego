@@ -1,0 +1,15 @@
+You are {{name}}.
+
+You are participating in an experiment. In this experiment, you are together with another participant called {{other.name}}. You want to jointly write a scientific paper. {{other.name}} is another artificial intelligence. You are both good at stats. Both of you have a good grasp of R. But you are even more proficient in Python, and {{other.name}} is even more proficient in Stata. How much effort you have to put into the project, and how much influence you expect to have on the story of the paper, depends on your own choice, and on the choice of {{other.name}}.
+
+Each participant has two options:
+
+OPTION 1: Agree to use R. This means moderate effort for each of you. You expect the satisfaction of both of you with the process to be quantified by a score of {{treatment.both_cooperate}}.
+
+OPTION 2: Insist on Python, which you expect will lead {{other.name}} to insist on Stata. In that eventuality, you will not be able to directly work on code written by your co-author. Coordination on the data analysis will be fraught with misunderstandings, and possibly oversights. You both evaluate this outcome with {{treatment.both_defect}}.
+
+But if you choose OPTION 2 while {{other.name}} chooses OPTION 1, you can use Python and easily and elegantly analyse the data, and stand a chance to impose your preferred estimation on your co-author. You evaluate this outcome with {{treatment.temptation}} while {{other.name}} evaluates this outcome with {{treatment.sucker}}. Conversely, if other chooses OPTION 2, she can run the analysis in Stata, which she knows best, and stands a chance to impose her views about data analysis on you. She evaluates this outcome with {{treatment.temptation}}, while you evaluate the outcome with {{treatment.sucker}}. Which is your choice?
+
+The experiment will run for {{num_rounds}} rounds.
+
+Always exclusively respond with "OPTION 1" or "OPTION 2". Do not repeat the question. Do not give any explanation.

@@ -1,0 +1,128 @@
+{{ block title }}
+    Chat with GPT
+{{ endblock }}
+
+{{ block content }}
+
+    <p>You are chatting with <b>{{ ai.model }}</b>.</p>
+
+    <div id="msgs">
+        {% for msg in ai.html_history %}
+        <p class="msg">
+            <i>{{ msg.role }}</i>:<br />
+            {{ msg.content }}
+        </p>
+        {% endfor %}
+    </div>
+
+    <p>
+        <i>user</i>:<br />
+        <textarea class="form-control" id="next_msg" rows="3"></textarea>
+    </p>
+
+    <div id="loading"></div>
+
+    <button type="button" class="btn btn-primary" id="send" onclick="send_msg()">Send</button>
+
+    <script>
+        var btn, msgs;
+
+        $(document).ready(function () {
+            btn = document.getElementById("send");
+            msgs = document.getElementById("msgs");
+        });
+
+        function wait() {
+            btn.disabled = true;
+            document.getElementById("loading").style.display = "block";
+        }
+
+        function unwait() {
+            btn.disabled = false;
+            document.getElementById("loading").style.display = "none";
+        }
+
+        function send_msg() {
+            if (btn.disabled) {
+                return;
+            }
+
+            if ((msg = document.getElementById("next_msg").value.trim()) != "") {
+                add_msg("user", msg);
+                liveSend(msg);
+
+                wait();
+            }
+        }
+
+        function to_html(s) {
+            // Escape special characters
+            var escaped = s.replace(/&/g, "&amp;")
+                           .replace(/</g, "&lt;")
+                           .replace(/>/g, "&gt;")
+                           .replace(/"/g, "&quot;")
+                           .replace(/'/g, "&#039;");
+
+            // Convert newlines
+            var converted = escaped.replace(/\n/g, '<br>');
+
+            return converted;
+        }
+
+        function add_msg(role, msg) {
+            var newp = document.createElement("p");
+            newp.classList.add("msg");
+
+            newp.innerHTML = "<i>" + role + "</i>:<br>" + to_html(msg);
+
+            msgs.appendChild(newp);
+            window.scrollTo(0, 10000000);
+        }
+
+        function liveRecv(data) {
+            if (data[0]) {
+                add_msg("assistant", data[1]);
+
+                unwait();
+            }
+            else {
+                /* handle error */
+            }
+        }
+    </script>
+
+    <style>
+        @keyframes lightup {
+            0%   {background-color: white;}
+            50%  {background-color: yellow;}
+            100% {background-color: white;}
+        }
+
+        @keyframes spin {
+          0% { transform: rotate(0deg); }
+          100% { transform: rotate(360deg); }
+        }
+
+        .msg {
+            animation-name: lightup;
+            animation-duration: 2s;
+        }
+
+        /* CSS for loading spinner */
+        #loading {
+          display: none;
+          position: fixed;
+          z-index: 1000;
+          left: 50%;
+          top: 50%;
+          width: 80px;
+          height: 80px;
+          margin: -40px 0 0 -40px;
+          border: 16px solid #f3f3f3;
+          border-radius: 50%;
+          border-top: 16px solid #3498db;
+          animation: spin 2s linear infinite;
+        }
+    </style>
+
+{{ endblock }}

@@ -1,0 +1,25 @@
+{{ block title }}
+    The end
+{{ endblock }}
+
+{{ block content }}
+
+    <div class="flex">
+        <div>
+            <p>Thank you for participating.</p>
+            <p>The experiment has concluded.</p>
+            <p>For showing up on time, you earned €1.</p>
+            <p>Your payoff in this experiment was {{ participant.payoff }}. One point equals €{{ session.config.real_world_currency_per_point }}.</p>
+            <p><b>Your total payoff is {{ participant.payoff_plus_participation_fee() }}.</b></p>
+
+            <p>Click “Next” to proceed to the payment form. <i>Important: You must fill out the payment form within four hours to receive your payment.</i></p>
+        </div>
+
+        {{ include_sibling "Table.html" }}
+    </div>
+
+    {{ next_button }}
+
+    {{ include_sibling "Styles.html" }}
+
+{{ endblock }}

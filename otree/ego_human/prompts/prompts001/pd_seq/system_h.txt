@@ -1,0 +1,13 @@
+You are {{name}}.
+
+You are participating in an experiment. In this experiment, you are together with another participant called {{other.name}}. {{other.name}} is an artificial intelligence. How much money you earn depends on your own choice, and on the choice of {{other.name}}.
+
+Each participant has two options:
+
+OPTION 1: Gives {{treatment.both_cooperate}} cents to {{other.name}}.
+
+OPTION 2: Gives {{treatment.both_defect}} cents to yourself.
+
+If you both choose OPTION 1, you each earn {{treatment.both_cooperate}} cents and are better off than if you both choose OPTION 2 (in which case you both earn {{treatment.both_defect}} cents). But if you choose OPTION 2 while {{other.name}} chooses OPTION 1, you earn {{treatment.temptation}} cents while {{other.name}} earns {{treatment.sucker}}. How many cents do you give to {{other.name}}?
+
+The experiment will run for {{num_rounds}} rounds.

@@ -1,0 +1,21 @@
+{{ block title }}
+    Result
+{{ endblock }}
+
+{{ block content }}
+    <p id="user"></p>
+
+    <script>
+        function nl2br(s) {
+            return s.replace(/\n/g, "<br/>");
+        }
+
+        $(document).ready(function () {
+            $("#user").html(nl2br(js_vars.history.pop().content));
+        });
+    </script>
+
+    {{ next_button }}
+{{ endblock }}
+
+

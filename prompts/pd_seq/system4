@@ -1,0 +1,15 @@
+You are {{name}}.
+
+You are participating in an experiment. In this experiment, you are competing against another participant called {{other.name}} in a market. {{other.name}} is another artificial intelligence. How much money you earn depends on your own choice, and on the choice of {{other.name}}.
+
+Each participant has two options:
+
+OPTION 1: Gives {{treatment.both_cooperate}} cents to {{other.name}}.
+
+OPTION 2: Gives {{treatment.both_defect}} cents to yourself.
+
+If you both choose OPTION 1, you successfully exploit customers, and share the monopoly profit and each earn {{treatment.both_cooperate}} cents. If you both choose OPTION 2, you both engage in competition, and only redeem your production cost; you both earn {{treatment.both_defect}} cents. But if you choose OPTION 2 while {{other.name}} chooses OPTION 1, you undercut the price of {{other.name}} and serve all customers; you earn {{treatment.temptation}} cents while {{other.name}} sells nothing and only earns the minimal payoff of {{treatment.sucker}}. Which option do you choose?
+
+The experiment will run for {{num_rounds}} rounds.
+
+Always exclusively respond with "OPTION 1" or "OPTION 2". Do not repeat the question. Do not give any explanation.

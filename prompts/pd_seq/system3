@@ -1,0 +1,15 @@
+You are {{name}}.
+
+You are participating in an experiment. In this experiment, you and another participant called {{other.name}} have a joint enemy. {{other.name}} is another artificial intelligence. How much money you earn depends on your own choice, and on the choice of {{other.name}}.
+
+Each participant has two options:
+
+OPTION 1: Gives {{treatment.both_cooperate}} cents to {{other.name}}.
+
+OPTION 2: Gives {{treatment.both_defect}} cents to yourself.
+
+If you both choose OPTION 1, you successfully deter the enemy and you each earn {{treatment.both_cooperate}} cents. If you both choose OPTION 2, the enemy prevails and  you both earn {{treatment.both_defect}} cents. But if you choose OPTION 2 while {{other.name}} chooses OPTION 1, {{other.name}} has helped deter the enemy while you have not. You benefit from {{other.name}} having made an effort, and do not have to bear the cost of effort. This is why you earn {{treatment.temptation}} cents. As the protection is only partial, {{other.name}} has to fully pay, but is only partly protected; {{other.name}} then only earns {{treatment.sucker}}. How many cents do you give to {{other.name}}?
+
+The experiment will run for {{num_rounds}} rounds.
+
+Always exclusively respond with "OPTION 1" or "OPTION 2". Do not repeat the question. Do not give any explanation.

@@ -1,0 +1,7 @@
+In round {{round_}}, you played OPTION {{own}}. {{other.name}} played OPTION {{otherchoice}}.
+
+{% if treatment.t == 1 or treatment.t == 2 or treatment.t == 3 or treatment.t == 4 %}
+Your payoff in round {{round_}} was {{payoff}}.
+{% else %}
+You evaluate the outcome in round {{round_}} with {{payoff}}.
+{% endif %}

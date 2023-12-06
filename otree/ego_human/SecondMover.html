@@ -1,0 +1,39 @@
+{{ block title }}
+    Your decision
+{{ endblock }}
+{{ block content }}
+
+    <p id="system"></p>
+
+    <hr>
+
+    <div class="flex">
+        <p id="user" style="font-weight:bold"></p>
+
+        {{ include_sibling "Table.html" }}
+    </div>
+
+    <script>
+        function nl2br(s) {
+            return s.replace(/\n/g, "<br/>");
+        }
+
+        $(document).ready(function () {
+            $("#system").html(nl2br(js_vars.history[0].content));
+            $("#user").html(nl2br(js_vars.history.pop().content));
+
+            $('#form').on("submit", function(e) {
+                document.getElementById("loading").style.display = "block";
+            });
+        });
+    </script>
+
+    {{ include_sibling "Styles.html" }}
+
+    {{ formfields }}
+
+    {{ include_sibling "Loading.html" }}
+
+    {{ next_button }}
+
+{{ endblock }}
