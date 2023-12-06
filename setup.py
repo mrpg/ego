@@ -17,7 +17,7 @@ setup(
     description="Library to run experiments with LLMs",
     long_description=open("README.md").read(),
     long_description_content_type="text/markdown",
-    url="https://github.com/mrpg/ego",
+    url="https://ego.mg.sb",
     classifiers=[
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: GNU Lesser General Public License v3 or later",
