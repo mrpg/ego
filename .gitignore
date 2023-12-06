@@ -1,0 +1,9 @@
+env
+out
+api_key
+scenarios/built.json
+*.pyc
+*pycache*
+alter_ego.egg-info
+build
+dist
