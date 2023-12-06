@@ -4,6 +4,6 @@ api_key
 scenarios/built.json
 *.pyc
 *pycache*
-alter_ego.egg-info
+*.egg-info
 build
 dist

@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 
 setup(
-    name="alter_ego",
+    name="alter_ego_llm",
     version="1.0.0",
     packages=find_packages(),
     include_package_data=True,
@@ -20,7 +20,7 @@ setup(
     url="https://ego.mg.sb",
     classifiers=[
         "Programming Language :: Python :: 3",
-        "License :: OSI Approved :: GNU Lesser General Public License v3 or later",
+        "License :: OSI Approved :: GNU Lesser General Public License v3 or later (LGPLv3+)",
         "Operating System :: OS Independent",
     ],
 )

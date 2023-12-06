@@ -33,7 +33,7 @@ Some editors also do this for you.
 3. Install `alter_ego` using
 
 ```console
-(env) user@host:~$ pip install -U "https://cdn.mg.sb/upload/alter_ego-1.0.0-py3-none-any.whl"
+(env) user@host:~$ pip install -U alter_ego_llm
 ```
 
 Note how `(env)` signals that we are in the virtual environment created earlier.
