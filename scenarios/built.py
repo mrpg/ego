@@ -81,6 +81,8 @@ def run(times: int = 1) -> None:
 
         e.link(convo)  # randomly assign treatment
 
+        convo.all.rounds = definition["rounds"]
+
         convo.all.system(
             alter_ego.utils.homogenize(definition["prompts"]["system"]),
             **convo.treatment.variables,
