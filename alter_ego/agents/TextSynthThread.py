@@ -106,38 +106,33 @@ class TextSynthThread(APIThread):
         :type extra_params: Optional[Dict[str, Any]]
         :return: The model output.
         :rtype: Any
-        :raises RuntimeError: If the maximum number of retries is exceeded.
         """
-        retries = 0
 
-        while retries <= self.max_retries:
-            try:
-                if self.verbose:
-                    print("+", end="", file=sys.stderr, flush=True)
+        try:
+            if self.verbose:
+                print("+", end="", file=sys.stderr, flush=True)
 
-                headers = {
-                    "Content-Type": "application/json",
-                    "Authorization": f"Bearer {self.api_key}",
-                }
+            headers = {
+                "Content-Type": "application/json",
+                "Authorization": f"Bearer {self.api_key}",
+            }
 
-                params = {
-                    "max_tokens": max_tokens,
-                    "temperature": self.temperature,
-                } | (extra_params if extra_params is not None else {})
+            params = {
+                "max_tokens": max_tokens,
+                "temperature": self.temperature,
+            } | (extra_params if extra_params is not None else {})
 
-                rq = requests.post(
-                    self.endpoint,
-                    headers=headers,
-                    data=json.dumps(self.ts_data() | params),
-                )
+            rq = requests.post(
+                self.endpoint,
+                headers=headers,
+                data=json.dumps(self.ts_data() | params),
+            )
 
-                llm_out = rq.json()
-                self.log.append(llm_out)
+            llm_out = rq.json()
+            self.log.append(llm_out)
 
-                return llm_out
-            except Exception as e:
-                retries += 1
-                self.log.append(e)
-                time.sleep(1)
+            return llm_out
+        except Exception as e:
+            self.log.append(e)
 
-        raise RuntimeError(f"max_retries ({self.max_retries}) exceeded for {self}.")
+            raise e  # re-raise

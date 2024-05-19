@@ -83,31 +83,29 @@ class GPTThread(APIThread):
         :type max_tokens: int
         :return: The model output.
         :rtype: str
-        :raises RuntimeError: If maximum number of retries is exceeded.
         """
         client.api_key = self.api_key
 
-        retries = 0
+        try:
+            if self.verbose:
+                print("+", end="", file=sys.stderr, flush=True)
 
-        while retries <= self.max_retries:
-            try:
-                if self.verbose:
-                    print("+", end="", file=sys.stderr, flush=True)
+            llm_out = client.chat.completions.create(
+                model=self.model,
+                messages=self.history,
+                max_tokens=max_tokens,
+                n=1,
+                stop=None,
+                temperature=self.temperature,
+            )
 
-                llm_out = client.chat.completions.create(
-                    model=self.model,
-                    messages=self.history,
-                    max_tokens=max_tokens,
-                    n=1,
-                    stop=None,
-                    temperature=self.temperature,
-                )
-                self.log.append(llm_out)
+            if llm_out.choices[0].finish_reason != "stop":
+                raise ValueError("GPT finished early")
 
-                return llm_out
-            except Exception as e:
-                retries += 1
-                self.log.append(e)
-                time.sleep(1)
+            self.log.append(llm_out)
 
-        raise RuntimeError(f"max_retries ({self.max_retries}) exceeded for {self}.")
+            return llm_out
+        except Exception as e:
+            self.log.append(e)
+
+            raise e  # re-raise

@@ -18,14 +18,13 @@ class APIThread(alter_ego.structure.Thread, abc.ABC):
 
         :param args: Additional arguments.
         :type args: Any
-        :param kwargs: Additional keyword arguments, includes `api_key`, `delay`, `max_retries`, and `verbose`.
+        :param kwargs: Additional keyword arguments, includes `api_key`, `delay`, and `verbose`.
         :type kwargs: Any
         """
         self.log = []  # Initialize log
 
         self.api_key = kwargs.get("api_key", self.get_api_key())
         self.delay = kwargs.get("delay", 0)
-        self.max_retries = kwargs.get("max_retries", 3)
         self.verbose = kwargs.get("verbose", False)
 
         super().__init__(*args, **kwargs)
