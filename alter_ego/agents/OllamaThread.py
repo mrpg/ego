@@ -1,8 +1,5 @@
 from ollama import Client
 
-import json
-import os
-import requests
 import sys
 import time
 
