@@ -39,12 +39,16 @@ def make_treatment(definition: dict, treatment_name: str) -> Treatment:
 def make_thread(thread_str: str):
     if thread_str == "CLIThread":
         return alter_ego.agents.CLIThread(verbose=True)
-    elif thread_str == "GPTThread (GPT 3.5)":
+    elif thread_str == "GPTThread (GPT 3.5)" or thread_str == "GPTThread (GPT-3.5 turbo)":
         return alter_ego.agents.GPTThread(
             model="gpt-3.5-turbo", temperature=1, verbose=True
         )
-    elif thread_str == "GPTThread (GPT 4)":
+    elif thread_str == "GPTThread (GPT 4)" or thread_str == "GPTThread (GPT-4)":
         return alter_ego.agents.GPTThread(model="gpt-4", temperature=1, verbose=True)
+    elif thread_str == "GPTThread (GPT-4 turbo)":
+        return alter_ego.agents.GPTThread(model="gpt-4-turbo", temperature=1, verbose=True)
+    elif thread_str == "GPTThread (GPT-4o)":
+        return alter_ego.agents.GPTThread(model="gpt-4o", temperature=1, verbose=True)
     else:
         raise ValueError(f"{thread_str} not found.")
 
