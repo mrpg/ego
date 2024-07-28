@@ -196,6 +196,65 @@ Feel free to experiment with our builder.
 
 [oTree](https://www.otree.org) is a relatively popular framework for web-based experiments.
 
+### Checking out our apps
+
+[Here](https://otree.readthedocs.io/en/latest/install-nostudio.html) is oTree's own guide to installing it on your computer, and [here](https://gitlab.com/gr0ssmann/otree_course#installing-otree) is another one by us.
+
+In general, after installing Python (and having the installer put it in your PATH), run
+
+```console
+user@host:~$ python -m venv env
+user@host:~$ source env/bin/activate
+(env) user@host:~$ pip install -U alter_ego_llm # run this first
+(env) user@host:~$ pip install -U otree # then run this
+(env) user@host:~$ otree startproject my_project # this creates an oTree “project”, say no to sample games
+(env) user@host:~$ cd my_project # this enters the oTree “project”
+```
+
+Put your OpenAI API key into the file `openai_key` – note how this file has no extension.
+
+[Go to `otree/` in this repository.](https://github.com/mrpg/ego/tree/master/otree) Copy any of the apps `ego_human` or `ego_chat` into your project directory. The app directory must be on the same level of `settings.py`. In other words, here is how the folder structure looks if you decide to check out `ego_chat` and you faithfully followed all previous instructions:
+
+```
+.
+├── ego_chat
+│   ├── Chat.html
+│   ├── __init__.py
+│   ├── prompts
+│   │   └── system.txt
+│   └── Welcome.html
+├── openai_key
+├── Procfile
+├── requirements.txt
+├── settings.py
+├── _static
+│   └── global
+│       └── empty.css
+└── _templates
+    └── global
+        └── Page.html
+```
+
+Amend `settings.py` as follows:
+
+```python
+SESSION_CONFIGS = [
+    dict(
+        name="ego_chat",
+        app_sequence=["ego_chat"],
+        num_demo_participants=1,
+    ),
+]
+```
+
+Run `otree devserver` and open your browser to [localhost:8000](http://localhost:8000). From there, you can click `ego_chat` to invoke the app. Enjoy!
+
+By the way, if you wish to use another model, you can change `gpt-4` in line 31 in `ego_chat/__init__.py` to `gpt-3.5-turbo` or [any other supported](https://platform.openai.com/docs/models) value.
+
+*Note*: `alter_ego` saves message histories automatically in `.ego_output` in your oTree project folder. We did this so that nothing ever gets lost.
+
+### In general
+
 You can attach Threads (i.e., LLMs) and Conversations (i.e., bundles of LLMs) to oTree objects (participants, players, subsessions or sessions). This basically works as follows (in your app's `__init__.py`:
 
 ```python
