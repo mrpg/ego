@@ -26,6 +26,9 @@ class GPTThread(APIThread):
 
         super().__init__(*args, model=model, temperature=temperature, **kwargs)
 
+        if "api_key" not in kwargs:
+            self.api_key = self.get_api_key()
+
     def get_api_key(self) -> str:
         """
         Retrieve the OpenAI API key.

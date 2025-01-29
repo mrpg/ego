@@ -22,7 +22,6 @@ class OllamaThread(APIThread):
         # defaults
         self.endpoint = "http://localhost:11434"
         self.timeout = 60
-        self.model = "llama3"
 
         super().__init__(**kwargs)
 
@@ -113,7 +112,7 @@ class OllamaThread(APIThread):
             client = Client(host=self.endpoint, timeout=self.timeout)
 
             llm_out = client.chat(
-                model="llama3", messages=self.ollama_data(), options=options
+                model=self.model, messages=self.ollama_data(), options=options
             )
             self.log.append(llm_out)
 

@@ -23,28 +23,10 @@ class APIThread(alter_ego.structure.Thread, abc.ABC):
         """
         self.log = []  # Initialize log
 
-        self.api_key = kwargs.get("api_key", self.get_api_key())
         self.delay = kwargs.get("delay", 0)
         self.verbose = kwargs.get("verbose", False)
 
         super().__init__(*args, **kwargs)
-
-    def get_api_key(self) -> str:
-        """
-        Retrieve the API key from the environment variable or file.
-
-        :return: The API key.
-        :rtype: str
-        :raises ValueError: If API key is neither in the environment nor in the file.
-        """
-        if "API_KEY" in os.environ:
-            return os.environ["API_KEY"]
-        elif os.path.exists("api_key"):
-            return alter_ego.utils.from_file("api_key")
-        else:
-            raise ValueError(
-                "If not specified within the constructor (argument api_key), the API key must be specified in the environment variable API_KEY, or the file api_key."
-            )
 
     @abc.abstractmethod
     def send(
