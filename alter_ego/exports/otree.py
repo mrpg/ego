@@ -98,7 +98,7 @@ class Assigner:
                 del assignee.vars[self.key]
 
 
-def link(instance: Any) -> Assigner:
+def link(instance: Any, suffix: Optional[str] = None) -> Assigner:
     """
     Create an Assigner object linked to the given instance.
 
@@ -140,5 +140,8 @@ def link(instance: Any) -> Assigner:
             f"Instance of type {type(instance).__name__} not recognized. "
             "Target can only be a Player, Participant, Group, Subsession, or Session."
         )
+
+    if suffix is not None:
+        key_in_vars += f":{suffix}"
 
     return Assigner(targets, key_in_vars, metadata)
