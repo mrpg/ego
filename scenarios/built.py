@@ -36,25 +36,49 @@ def make_treatment(definition: dict, treatment_name: str) -> Treatment:
     return treat
 
 
-def make_thread(thread_str: str):
+# Legacy model mapping for backwards compatibility with old string format
+LEGACY_GPTTHREAD_MODELS = {
+    "GPTThread (GPT-3.5)": "gpt-3.5-turbo",
+    "GPTThread (GPT 3.5)": "gpt-3.5-turbo",
+    "GPTThread (GPT-3.5 turbo)": "gpt-3.5-turbo",
+    "GPTThread (GPT-4)": "gpt-4",
+    "GPTThread (GPT 4)": "gpt-4",
+    "GPTThread (GPT-4 turbo)": "gpt-4-turbo",
+    "GPTThread (GPT-4o)": "gpt-4o",
+}
+
+
+def make_thread(thread_def):
+    """
+    Create a thread from a definition.
+
+    Supports two formats:
+    - New format: ["GPTThread", "model-id"] - model ID passed directly to constructor
+    - Legacy format: "GPTThread (GPT-4)" - mapped via LEGACY_GPTTHREAD_MODELS
+    """
+    # New format: ["ThreadType", "model-id", ...optional kwargs]
+    if isinstance(thread_def, list):
+        thread_type = thread_def[0]
+        if thread_type == "GPTThread":
+            model = thread_def[1]
+            return alter_ego.agents.GPTThread(model=model, temperature=1, verbose=True)
+        elif thread_type == "CLIThread":
+            return alter_ego.agents.CLIThread(verbose=True)
+        else:
+            raise ValueError(f"Unknown thread type: {thread_type}")
+
+    # Legacy string format
+    thread_str = thread_def
+
     if thread_str == "CLIThread":
         return alter_ego.agents.CLIThread(verbose=True)
-    elif (
-        thread_str == "GPTThread (GPT 3.5)" or thread_str == "GPTThread (GPT-3.5 turbo)"
-    ):
+
+    if thread_str in LEGACY_GPTTHREAD_MODELS:
         return alter_ego.agents.GPTThread(
-            model="gpt-3.5-turbo", temperature=1, verbose=True
+            model=LEGACY_GPTTHREAD_MODELS[thread_str], temperature=1, verbose=True
         )
-    elif thread_str == "GPTThread (GPT 4)" or thread_str == "GPTThread (GPT-4)":
-        return alter_ego.agents.GPTThread(model="gpt-4", temperature=1, verbose=True)
-    elif thread_str == "GPTThread (GPT-4 turbo)":
-        return alter_ego.agents.GPTThread(
-            model="gpt-4-turbo", temperature=1, verbose=True
-        )
-    elif thread_str == "GPTThread (GPT-4o)":
-        return alter_ego.agents.GPTThread(model="gpt-4o", temperature=1, verbose=True)
-    else:
-        raise ValueError(f"{thread_str} not found.")
+
+    raise ValueError(f"{thread_str} not found.")
 
 
 def make_filter(filter_def: list):
