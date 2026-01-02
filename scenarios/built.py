@@ -53,7 +53,7 @@ def make_thread(thread_def):
     Create a thread from a definition.
 
     Supports two formats:
-    - New format: ["GPTThread", "model-id"] - model ID passed directly to constructor
+    - New format: ["GPTThread", "model-id"] or ["OpenRouterThread", "model-id"]
     - Legacy format: "GPTThread (GPT-4)" - mapped via LEGACY_GPTTHREAD_MODELS
     """
     # New format: ["ThreadType", "model-id", ...optional kwargs]
@@ -62,6 +62,11 @@ def make_thread(thread_def):
         if thread_type == "GPTThread":
             model = thread_def[1]
             return alter_ego.agents.GPTThread(model=model, temperature=1, verbose=True)
+        elif thread_type == "OpenRouterThread":
+            model = thread_def[1]
+            return alter_ego.agents.OpenRouterThread(
+                model=model, temperature=1, verbose=True
+            )
         elif thread_type == "CLIThread":
             return alter_ego.agents.CLIThread(verbose=True)
         else:

@@ -4,4 +4,5 @@ from alter_ego.agents.ConstantThread import ConstantThread
 from alter_ego.agents.ExternalThread import ExternalThread
 from alter_ego.agents.GPTThread import GPTThread
 from alter_ego.agents.OllamaThread import OllamaThread
+from alter_ego.agents.OpenRouterThread import OpenRouterThread
 from alter_ego.agents.TextSynthThread import TextSynthThread
