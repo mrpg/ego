@@ -1,0 +1,35 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "alter_ego_llm"
+version = "1.5.0"
+description = "Library to run experiments with LLMs"
+readme = "README.md"
+license = "LGPL-3.0-or-later"
+requires-python = ">=3.8"
+authors = [
+    { name = "Max R. P. Grossmann", email = "ego@mg.sb" }
+]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+]
+dependencies = [
+    "click>=8.1",
+    "colorama>=0.4.6",
+    "Jinja2>=3.1.2",
+    "openai~=1.60.2",
+    "requests<3",
+    "ollama>=0.2",
+]
+
+[project.urls]
+Homepage = "https://ego.mg.sb"
+
+[project.scripts]
+ego = "ego.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
