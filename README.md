@@ -62,7 +62,7 @@ from alter_ego.utils import extract_number
 from alter_ego.experiment import factorial
 
 def agent():
-  return alter_ego.agents.GPTThread(model="gpt-3.5-turbo", temperature=1.0)
+  return alter_ego.agents.GPTThread(model="gpt-4o", temperature=1.0)
 
 prompt = "Estimate the public approval rating of {{politician}} during the {{time}} of their presidency. Only return a single percentage from 0 to 100."
 
@@ -108,7 +108,7 @@ Rerunning our script gives:
 
 (Here, I have shown only two rows of the output.)
 
-As you see, in the cases where GPT returned only a single number, `alter_ego` was able to correctly extract it. Unfortunately, GPT 3.5 tends to refuse requests to just return a single number. GPT 4 works better. If you have access to GPT 4 over the API, you can change `model="gpt-3.5-turbo"` to `model="gpt-4"`. This is the resulting output (where I have omitted the `retval` once again):
+As you see, in the cases where GPT returned only a single number, `alter_ego` was able to correctly extract it. Unfortunately, GPT 3.5 tends to refuse requests to just return a single number. GPT 4 works better. If you have access to GPT 4 over the API, you can change `model="gpt-4o"` to `model="gpt-4"`. This is the resulting output (where I have omitted the `retval` once again):
 
 ```python
 {'politician': 'George W. Bush', 'time': '1st year', 'result': 57}
@@ -249,7 +249,7 @@ SESSION_CONFIGS = [
 
 Run `otree devserver` and open your browser to [localhost:8000](http://localhost:8000). From there, you can click `ego_chat` to invoke the app. Enjoy!
 
-By the way, if you wish to use another model, you can change `gpt-4` in line 31 in `ego_chat/__init__.py` to `gpt-3.5-turbo` or [any other supported](https://platform.openai.com/docs/models) value.
+By the way, if you wish to use another model, you can change `gpt-4` in line 31 in `ego_chat/__init__.py` to `gpt-4o` or [any other supported](https://platform.openai.com/docs/models) value.
 
 *Note*: `alter_ego` saves message histories automatically in `.ego_output` in your oTree project folder. We did this so that nothing ever gets lost.
 
@@ -266,7 +266,7 @@ from alter_ego.exports.otree import link as ai
 
 def creating_session(subsession):
     for player in subsession.get_players():
-        ai(player).set(GPTThread(model="gpt-3.5-turbo", temperature=1.0))
+        ai(player).set(GPTThread(model="gpt-4o", temperature=1.0))
 ```
 
 Here, each `player` would get their own personal GPT agent. If you want to assign such an agent to a `group`, just do this:
@@ -274,7 +274,7 @@ Here, each `player` would get their own personal GPT agent. If you want to assig
 ```python
 def creating_session(subsession):
     for group in subsession.get_groups():
-        ai(group).set(GPTThread(model="gpt-3.5-turbo", temperature=1.0))
+        ai(group).set(GPTThread(model="gpt-4o", temperature=1.0))
 ```
 
 Then, within your code, you can access the agent using a *context manager*. Here's an example of a simple `live_method`-based chat if we attached the Thread to the `player` object:

@@ -51,7 +51,7 @@ def run(times: int = 1) -> None:
         try:
             agent = alter_ego.agents.CLIThread(
                 name="AI",
-                model="gpt-3.5-turbo",
+                model="gpt-4o",
                 temperature=1.0,
                 delay=1,
                 verbose=True,
